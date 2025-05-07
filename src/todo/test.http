@@ -8,9 +8,7 @@ GET https://localhost:7234/api/todoitems
 POST https://localhost:7234/api/todoitems
 Content-Type: application/json
 
-{
-    "name": "muista hedelmiä"
-} 
+
 
 
 

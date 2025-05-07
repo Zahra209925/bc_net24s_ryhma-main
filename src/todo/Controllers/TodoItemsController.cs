@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Todo.Models;
 
-namespace todo.Controllers
+namespace Todo.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -42,13 +42,12 @@ namespace todo.Controllers
         }
 
         // PUT: api/TodoItems/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutTodoItem(long id, TodoItem todoItem)
         {
             if (id != todoItem.Id)
             {
-                return BadRequest();
+                return BadRequest("The ID in the URL does not match the ID in the body.");
             }
 
             _context.Entry(todoItem).State = EntityState.Modified;
@@ -73,14 +72,13 @@ namespace todo.Controllers
         }
 
         // POST: api/TodoItems
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<TodoItem>> PostTodoItem(TodoItem todoItem)
         {
             _context.TodoItems.Add(todoItem);
             await _context.SaveChangesAsync();
 
-            // return CreatedAtAction("GetTodoItem", new { id = todoItem.Id }, todoItem); Ei käytetä, koska sisältää hardcoding
+            // Use nameof(GetTodoItem) to avoid hardcoding the action name
             return CreatedAtAction(nameof(GetTodoItem), new { id = todoItem.Id }, todoItem);
         }
 
