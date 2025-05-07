@@ -4,6 +4,28 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+        
+        
+        {
+            "name": ".NET Core Launch (web)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/bin/Debug/<target-framework>/<project-name.dll>",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            }
+        },
     {
         "name": "Kertaus1",
         "type": "coreclr",
@@ -42,15 +64,12 @@
     },
     {
         "name": "ProductsApi",
-        "type": "coreclr",
+        "type": "dotnet",
         "request": "launch",
-        "preLaunchTask": "build",
-        "program": "${workspaceFolder}/src/products/bin/Debug/net9.0/products.dll",
-        "args": [],
-        "cwd": "${workspaceFolder}/src/todo/",
-        "console": "internalConsole",
-        "stopAtEntry": false,
-        "internalConsoleOptions": "openOnSessionStart"
+        "projectPath": "${workspaceFolder}/src/products/products.csproj"
+
+
+    
     },
     {
         "name": "Mythical Creatures",
