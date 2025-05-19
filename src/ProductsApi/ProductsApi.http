@@ -1,6 +1,6 @@
-@ProductsApi_HostAddress = http://localhost:5239
+@ProductsApi_HostAddress = http://localhost:5233
 
-GET {{ProductsApi_HostAddress}}/api/[controller]/
+GET {{ProductsApi_HostAddress}}/api/products/
 Accept: application/json
 
 ###

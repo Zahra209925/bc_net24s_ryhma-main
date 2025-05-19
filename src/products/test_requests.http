@@ -15,7 +15,7 @@ Authorization: Bearer {{id_token}}
 Accept: application/json
 
 ### Create a new product
-POST https://localhost:7234/api/products
+POST https://localhost:5239/api/products
 Authorization: Bearer {{id_token}}
 Content-Type: application/json
 

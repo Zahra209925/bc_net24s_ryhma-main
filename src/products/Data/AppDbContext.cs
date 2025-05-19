@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using AspNetWebAPI.Models;
+using products.Models;
 
-namespace AspNetWebAPI.Data
+namespace products.Data
 {
     public class AppDbContext : DbContext
     {

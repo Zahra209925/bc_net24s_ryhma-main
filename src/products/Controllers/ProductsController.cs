@@ -3,13 +3,13 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AspNetWebAPI.Data;
-using AspNetWebAPI.Models;
+using products.Data;
+using products.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 
-namespace AspNetWebAPI.Controllers
+namespace products.Controllers
 {
     [Authorize]
     [ApiController]
