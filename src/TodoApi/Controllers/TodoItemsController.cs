@@ -5,10 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Todo.Models;
-using Serilog;
+using TodoApi.Models;
 
-namespace Todo.Controllers
+namespace TodoApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -25,8 +24,17 @@ namespace Todo.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TodoItem>>> GetTodoItems()
         {
-            Log.Information("GET request received at /api/todoitems");
             return await _context.TodoItems.ToListAsync();
+        }
+
+        // POST: api/TodoItems
+        [HttpPost]
+        public async Task<ActionResult<TodoItem>> PostTodoItem(TodoItem todoItem)
+        {
+            _context.TodoItems.Add(todoItem);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetTodoItem), new { id = todoItem.Id }, todoItem);
         }
 
         // GET: api/TodoItems/5
@@ -49,7 +57,7 @@ namespace Todo.Controllers
         {
             if (id != todoItem.Id)
             {
-                return BadRequest("The ID in the URL does not match the ID in the body.");
+                return BadRequest();
             }
 
             _context.Entry(todoItem).State = EntityState.Modified;
@@ -71,24 +79,6 @@ namespace Todo.Controllers
             }
 
             return NoContent();
-        }
-
-        // POST: api/TodoItems
-        [HttpPost]
-        public async Task<ActionResult<TodoItem>> PostTodoItem(TodoItem todoItem)
-        {
-            if (todoItem == null)
-            {
-                Log.Error("POST request failed: TodoItem is null");
-                return BadRequest("TodoItem cannot be null");
-            }
-
-            Log.Information("POST request received at /api/todoitems");
-            _context.TodoItems.Add(todoItem);
-            await _context.SaveChangesAsync();
-
-            // Use nameof(GetTodoItem) to avoid hardcoding the action name
-            return CreatedAtAction(nameof(GetTodoItem), new { id = todoItem.Id }, todoItem);
         }
 
         // DELETE: api/TodoItems/5
