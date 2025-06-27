@@ -1,4 +1,4 @@
-namespace TodoApi.Models;
+using System.ComponentModel.DataAnnotations;
 
 public class TodoItem
 {
